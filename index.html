@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elecciones ICM</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ICM</div>
+
+    <div>
+        <h1>Instituto Cartagena del Mar</h1>
+        <p>Elecciones Estudiantiles</p>
+    </div>
+</header>
+
+<main>
+
+    <section id="inicio" class="pantalla">
+
+        <div class="bienvenida">
+
+            <p class="etiqueta">SISTEMA INSTITUCIONAL DE VOTACIÓN</p>
+
+            <h2>Bienvenido a las elecciones</h2>
+
+            <p>
+                Selecciona tu grado para comenzar el proceso de votación.
+            </p>
+
+        </div>
+
+        <h3>Selecciona tu grado</h3>
+
+        <div class="grados">
+
+            <button onclick="seleccionarGrado('6°')">6°</button>
+            <button onclick="seleccionarGrado('7°')">7°</button>
+            <button onclick="seleccionarGrado('8°')">8°</button>
+            <button onclick="seleccionarGrado('9°')">9°</button>
+            <button onclick="seleccionarGrado('10°')">10°</button>
+            <button onclick="seleccionarGrado('11°')">11°</button>
+
+        </div>
+
+    </section>
+
+
+    <section id="elecciones" class="pantalla oculto">
+
+        <button class="volver" onclick="volverInicio()">
+            ← Cambiar grado
+        </button>
+
+        <p class="etiqueta">GRADO SELECCIONADO</p>
+
+        <h2 id="gradoSeleccionado"></h2>
+
+        <p>Selecciona la elección en la que deseas participar.</p>
+
+        <div class="elecciones">
+
+            <button onclick="mostrarCandidatos('personero')">
+                👤
+                <strong>Personero/a</strong>
+                <span>Elección institucional</span>
+            </button>
+
+            <button onclick="mostrarCandidatos('personarito')">
+                🎓
+                <strong>Personerito/a</strong>
+                <span>Elección institucional</span>
+            </button>
+
+            <button onclick="mostrarCandidatos('representante')">
+                🏫
+                <strong>Representante del curso</strong>
+                <span>Representante de tu grado</span>
+            </button>
+
+            <button onclick="mostrarCandidatos('contralor')">
+                📊
+                <strong>Contralor/a</strong>
+                <span>Elección institucional</span>
+            </button>
+
+        </div>
+
+        <button class="resultados" onclick="mostrarResultados()">
+            📊 Ver resultados
+        </button>
+
+    </section>
+
+
+    <section id="candidatos" class="pantalla oculto">
+
+        <button class="volver" onclick="volverElecciones()">
+            ← Volver
+        </button>
+
+        <p class="etiqueta" id="tipoEleccion"></p>
+
+        <h2 id="tituloEleccion"></h2>
+
+        <div id="listaCandidatos"></div>
+
+    </section>
+
+
+    <section id="resultados" class="pantalla oculto">
+
+        <button class="volver" onclick="volverElecciones()">
+            ← Volver
+        </button>
+
+        <p class="etiqueta">TRANSPARENCIA ELECTORAL</p>
+
+        <h2>Resultados</h2>
+
+        <div id="listaResultados"></div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Instituto Cartagena del Mar
+    </p>
+
+    <p>
+        Sistema de Elecciones Estudiantiles
+    </p>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
