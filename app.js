@@ -264,3 +264,4 @@ async function mostrarResultados() {
 
         if (!conteo[voto.candidato_id]) {
             conte
+const SUPABASE_KEY = "sb_publishable_0TE3LtbUDldB5TLnTpoK9A_3-RXU4_q";
