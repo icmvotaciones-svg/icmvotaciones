@@ -29,6 +29,10 @@
             margin-bottom: 25px;
         }
 
+        p {
+            font-size: 18px;
+        }
+
         button {
             display: block;
             width: 100%;
@@ -74,40 +78,49 @@
 
     <div class="contenedor">
 
-        <!-- INICIO -->
+        <!-- ========================= -->
+        <!--          INICIO            -->
+        <!-- ========================= -->
+
         <section id="inicio">
 
             <h1>🗳️ Sistema de Votaciones</h1>
 
-            <p>Selecciona tu grado</p>
+            <p>Bienvenido al sistema de votaciones</p>
+
+            <p><strong>Selecciona tu grado para continuar</strong></p>
 
             <button onclick="seleccionarGrado('10-01')">
-                10-01
+                Grado 10-01
             </button>
 
             <button onclick="seleccionarGrado('10-02')">
-                10-02
+                Grado 10-02
             </button>
 
             <button onclick="seleccionarGrado('11-01')">
-                11-01
+                Grado 11-01
             </button>
 
             <button onclick="seleccionarGrado('11-02')">
-                11-02
+                Grado 11-02
             </button>
 
         </section>
 
 
-        <!-- ELECCIONES -->
+        <!-- ========================= -->
+        <!--        ELECCIONES           -->
+        <!-- ========================= -->
+
         <section id="elecciones" class="oculto">
 
             <h2 id="gradoSeleccionado"></h2>
 
-            <p>Selecciona el candidato por el que deseas votar:</p>
+            <p>
+                Selecciona el candidato por el que deseas votar:
+            </p>
 
-            <!-- AQUÍ APARECERÁN LOS CANDIDATOS -->
             <div id="candidatos"></div>
 
         </section>
@@ -115,7 +128,10 @@
     </div>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+    <!--        JAVASCRIPT          -->
+    <!-- ========================= -->
+
     <script src="app.js"></script>
 
 </body>
