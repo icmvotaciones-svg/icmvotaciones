@@ -3,153 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elecciones ICM</title>
 
-    <link rel="stylesheet" href="style.css">
+    <title>Sistema de Votaciones</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            text-align: center;
+        }
+
+        .contenedor {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            margin: 12px auto;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        #candidatos {
+            margin-top: 20px;
+        }
+
+        .candidato {
+            background: white;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .candidato h3 {
+            margin-top: 0;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">ICM</div>
+    <div class="contenedor">
 
-    <div>
-        <h1>Instituto Cartagena del Mar</h1>
-        <p>Elecciones Estudiantiles</p>
+        <!-- INICIO -->
+        <section id="inicio">
+
+            <h1>🗳️ Sistema de Votaciones</h1>
+
+            <p>Selecciona tu grado</p>
+
+            <button onclick="seleccionarGrado('10-01')">
+                10-01
+            </button>
+
+            <button onclick="seleccionarGrado('10-02')">
+                10-02
+            </button>
+
+            <button onclick="seleccionarGrado('11-01')">
+                11-01
+            </button>
+
+            <button onclick="seleccionarGrado('11-02')">
+                11-02
+            </button>
+
+        </section>
+
+
+        <!-- ELECCIONES -->
+        <section id="elecciones" class="oculto">
+
+            <h2 id="gradoSeleccionado"></h2>
+
+            <p>Selecciona el candidato por el que deseas votar:</p>
+
+            <!-- AQUÍ APARECERÁN LOS CANDIDATOS -->
+            <div id="candidatos"></div>
+
+        </section>
+
     </div>
-</header>
-
-<main>
-
-    <section id="inicio" class="pantalla">
-
-        <div class="bienvenida">
-
-            <p class="etiqueta">SISTEMA INSTITUCIONAL DE VOTACIÓN</p>
-
-            <h2>Bienvenido a las elecciones</h2>
-
-            <p>
-                Selecciona tu grado para comenzar el proceso de votación.
-            </p>
-
-        </div>
-
-        <h3>Selecciona tu grado</h3>
-
-        <div class="grados">
-
-<button onclick="seleccionarGrado('Transición')">Transición</button>
-<button onclick="seleccionarGrado('1°')">1°</button>
-<button onclick="seleccionarGrado('2°')">2°</button>
-<button onclick="seleccionarGrado('3°')">3°</button>
-<button onclick="seleccionarGrado('4°')">4°</button>
-<button onclick="seleccionarGrado('5°')">5°</button>
-<button onclick="seleccionarGrado('6°')">6°</button>
-<button onclick="seleccionarGrado('7°')">7°</button>
-<button onclick="seleccionarGrado('8°')">8°</button>
-<button onclick="seleccionarGrado('9°')">9°</button>
-<button onclick="seleccionarGrado('10°')">10°</button>
-<button onclick="seleccionarGrado('11°')">11°</button>
-
-        </div>
-
-    </section>
 
 
-    <section id="elecciones" class="pantalla oculto">
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
 
-        <button class="volver" onclick="volverInicio()">
-            ← Cambiar grado
-        </button>
-
-        <p class="etiqueta">GRADO SELECCIONADO</p>
-
-        <h2 id="gradoSeleccionado"></h2>
-
-        <p>Selecciona la elección en la que deseas participar.</p>
-
-        <div class="elecciones">
-
-            <button onclick="mostrarCandidatos('personero')">
-                👤
-                <strong>Personero/a</strong>
-                <span>Elección institucional</span>
-            </button>
-
-            <button onclick="mostrarCandidatos('personarito')">
-                🎓
-                <strong>Personerito/a</strong>
-                <span>Elección institucional</span>
-            </button>
-
-            <button onclick="mostrarCandidatos('representante')">
-                🏫
-                <strong>Representante del curso</strong>
-                <span>Representante de tu grado</span>
-            </button>
-
-            <button onclick="mostrarCandidatos('contralor')">
-                📊
-                <strong>Contralor/a</strong>
-                <span>Elección institucional</span>
-            </button>
-
-        </div>
-
-        <button class="resultados" onclick="mostrarResultados()">
-            📊 Ver resultados
-        </button>
-
-    </section>
-
-
-    <section id="candidatos" class="pantalla oculto">
-
-        <button class="volver" onclick="volverElecciones()">
-            ← Volver
-        </button>
-
-        <p class="etiqueta" id="tipoEleccion"></p>
-
-        <h2 id="tituloEleccion"></h2>
-
-        <div id="listaCandidatos"></div>
-
-    </section>
-
-
-    <section id="resultados" class="pantalla oculto">
-
-        <button class="volver" onclick="volverElecciones()">
-            ← Volver
-        </button>
-
-        <p class="etiqueta">TRANSPARENCIA ELECTORAL</p>
-
-        <h2>Resultados</h2>
-
-        <div id="listaResultados"></div>
-
-    </section>
-
-</main>
-
-
-<footer>
-
-    <p>
-        Instituto Cartagena del Mar
-    </p>
-
-    <p>
-        Sistema de Elecciones Estudiantiles
-    </p>
-
-</footer>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./app.js?v=2"></script>
 </body>
 </html>
