@@ -6,9 +6,10 @@ const supabase = window.supabase.createClient(
     SUPABASE_KEY
 );
 
+alert("APP.JS FUNCIONANDO");
+
 let gradoActual = "";
 let eleccionActual = "";
-
 
 /* =========================
    SELECCIONAR GRADO
