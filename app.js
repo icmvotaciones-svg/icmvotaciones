@@ -8,7 +8,10 @@ function seleccionarGrado(grado) {
 
     document.getElementById("inicio").classList.add("oculto");
     document.getElementById("elecciones").classList.remove("oculto");
+
+    mostrarElecciones();
 }
+
 function mostrarElecciones() {
     console.log("Grado seleccionado:", gradoActual);
 
