@@ -73,8 +73,8 @@ async function mostrarCandidatos(tipo) {
 
     document.getElementById("tituloEleccion").textContent =
         tipo === "representante"
-        ? "Representante de " + gradoActual
-        : nombres[tipo];
+            ? "Representante de " + gradoActual
+            : nombres[tipo];
 
     const lista = document.getElementById("listaCandidatos");
 
@@ -98,10 +98,10 @@ async function mostrarCandidatos(tipo) {
 
     if (error) {
 
+        console.error(error);
+
         lista.innerHTML =
             "<p>No se pudieron cargar los candidatos.</p>";
-
-        console.error(error);
 
         return;
     }
@@ -129,11 +129,12 @@ async function mostrarCandidatos(tipo) {
 
             <div class="info">
                 <strong>${escapeHTML(candidato.nombre)}</strong>
+
                 <span>
                     ${
                         tipo === "representante"
-                        ? "Representante de " + candidato.grado
-                        : "Candidato/a"
+                            ? "Representante de " + candidato.grado
+                            : "Candidato/a"
                     }
                 </span>
             </div>
@@ -166,7 +167,8 @@ async function registrarVoto(candidatoId, nombre) {
         return;
     }
 
-    const codigoJornada = localStorage.getItem("codigo_jornada");
+    const codigoJornada =
+        localStorage.getItem("codigo_jornada");
 
     if (!codigoJornada) {
 
@@ -211,6 +213,48 @@ async function registrarVoto(candidatoId, nombre) {
 
 async function mostrarResultados() {
 
+    const email = prompt(
+        "Correo electrónico del administrador:"
+    );
+
+    if (!email) {
+        return;
+    }
+
+    const password = prompt(
+        "Contraseña:"
+    );
+
+    if (!password) {
+        return;
+    }
+
+    const { data: loginData, error: loginError } =
+        await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+    if (loginError) {
+
+        console.error(loginError);
+
+        alert(
+            "Correo o contraseña incorrectos."
+        );
+
+        return;
+    }
+
+    if (!loginData.session) {
+
+        alert(
+            "No se pudo iniciar la sesión."
+        );
+
+        return;
+    }
+
     document.getElementById("elecciones").classList.add("oculto");
     document.getElementById("resultados").classList.remove("oculto");
 
@@ -254,14 +298,112 @@ async function mostrarResultados() {
         return;
     }
 
-    const { data: candidatos } = await supabase
-        .from("candidatos")
-        .select("*");
+    const { data: candidatos, error: candidatosError } =
+        await supabase
+            .from("candidatos")
+            .select("*");
+
+    if (candidatosError) {
+
+        console.error(candidatosError);
+
+        contenedor.innerHTML =
+            "<p>No se pudieron cargar los candidatos.</p>";
+
+        return;
+    }
 
     const conteo = {};
 
     votos.forEach(voto => {
 
         if (!conteo[voto.candidato_id]) {
-            conte
-const SUPABASE_KEY = "sb_publishable_0TE3LtbUDldB5TLnTpoK9A_3-RXU4_q";
+            conteo[voto.candidato_id] = 0;
+        }
+
+        conteo[voto.candidato_id]++;
+    });
+
+    const resultados = candidatos
+        .filter(candidato =>
+            conteo[candidato.id]
+        )
+        .sort((a, b) =>
+            conteo[b.id] - conteo[a.id]
+        );
+
+    contenedor.innerHTML = "";
+
+    resultados.forEach(candidato => {
+
+        const elemento = document.createElement("div");
+
+        elemento.className = "candidato";
+
+        elemento.innerHTML = `
+            <div class="numero">
+                ${candidato.numero}
+            </div>
+
+            <div class="info">
+                <strong>
+                    ${escapeHTML(candidato.nombre)}
+                </strong>
+
+                <span>
+                    ${escapeHTML(candidato.cargo)}
+                    ${
+                        candidato.grado
+                            ? " — " + escapeHTML(candidato.grado)
+                            : ""
+                    }
+                </span>
+            </div>
+
+            <div class="numero">
+                ${conteo[candidato.id]} votos
+            </div>
+        `;
+
+        contenedor.appendChild(elemento);
+    });
+}
+
+
+/* =========================
+   CERRAR SESIÓN
+========================= */
+
+async function cerrarSesion() {
+
+    await supabase.auth.signOut();
+
+    alert("Sesión administrativa cerrada.");
+
+    volverInicio();
+}
+
+
+/* =========================
+   SEGURIDAD DE TEXTO
+========================= */
+
+function escapeHTML(texto) {
+
+    return String(texto)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+function escapeJS(texto) {
+
+    return String(texto)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r");
+}
