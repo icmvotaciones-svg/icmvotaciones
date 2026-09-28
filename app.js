@@ -146,10 +146,54 @@ function mostrarResultados() {
     document.getElementById("resultados").classList.remove("oculto");
 
     document.getElementById("listaResultados").innerHTML = `
-        
-        <div class="candidato">
-            <h3>Resultados</h3>
-            <p>Los resultados aparecerán aquí.</p>
+
+        <div class="resultado">
+
+            <h3>Personero/a</h3>
+
+            <div class="barra">
+                <div class="progreso" style="width: 45%;">
+                    45%
+                </div>
+            </div>
+
+            <p>Candidato 1: 45 votos</p>
+            <p>Candidato 2: 30 votos</p>
+            <p>Candidato 3: 25 votos</p>
+
+        </div>
+
+
+        <div class="resultado">
+
+            <h3>Personerito/a</h3>
+
+            <p>Candidato 1: 40 votos</p>
+            <p>Candidato 2: 35 votos</p>
+            <p>Candidato 3: 25 votos</p>
+
+        </div>
+
+
+        <div class="resultado">
+
+            <h3>Representante del curso</h3>
+
+            <p>Candidato 1: 50 votos</p>
+            <p>Candidato 2: 30 votos</p>
+            <p>Candidato 3: 20 votos</p>
+
+        </div>
+
+
+        <div class="resultado">
+
+            <h3>Contralor/a</h3>
+
+            <p>Candidato 1: 55 votos</p>
+            <p>Candidato 2: 25 votos</p>
+            <p>Candidato 3: 20 votos</p>
+
         </div>
 
     `;
