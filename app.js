@@ -9,3 +9,9 @@ function seleccionarGrado(grado) {
     document.getElementById("inicio").classList.add("oculto");
     document.getElementById("elecciones").classList.remove("oculto");
 }
+function mostrarElecciones() {
+    console.log("Grado seleccionado:", gradoActual);
+
+    // Aquí posteriormente cargaremos los candidatos
+    // desde Supabase.
+}
