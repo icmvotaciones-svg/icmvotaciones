@@ -1,17 +1,14 @@
 const SUPABASE_URL = "https://dtibgfsozrnpmhnaalvp.supabase.co";
 const SUPABASE_KEY = "sb_publishable_0TE3LtbUDldB5TLnTpoK9A_3-RXU4_q";
 
-alert("0 - APP.JS CARGÓ");
-
-const SUPABASE_URL = "https://dtibgfsozrnpmhnaalvp.supabase.co";
-const SUPABASE_KEY = "sb_publishable_0TE3LtbUDldB5TLnTpoK9A_3-RXU4_q";
-
 const supabase = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
-alert("1 - SUPABASE CARGÓ");
+let gradoActual = "";
+let eleccionActual = "";
+
 
 /* =========================
    SELECCIONAR GRADO
